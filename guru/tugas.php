@@ -105,7 +105,7 @@
                         $link_lampiran = '';
                         if (!empty($row['file_tugas'])) {
                             $ext = strtolower(pathinfo($row['file_tugas'], PATHINFO_EXTENSION));
-                            $path_file = '../uploads/tugas/' . $row['file_tugas'];
+                            $path_file = '../download.php?f=tugas/' . rawurlencode($row['file_tugas']);
                             
                             if ($ext == 'pdf') {
                                 $link_lampiran = '<br><a href="'.$path_file.'" target="_blank" style="font-size:12px; color:#0000FF; text-decoration:none;"><i class="bi bi-file-pdf me-2"></i>Lihat Lampiran PDF</a>';
@@ -252,7 +252,7 @@ function editTugas(id, idMapel, idKelas, deadline, judul, deskripsi, fileTugas) 
     
     if (fileTugas) {
         document.getElementById('previewFileLama').style.display = 'block';
-        document.getElementById('linkFileLama').href = '../uploads/tugas/' + fileTugas;
+        document.getElementById('linkFileLama').href = '../download.php?f=tugas/' + encodeURIComponent(fileTugas);
         document.getElementById('linkFileLama').textContent = fileTugas;
     } else {
         document.getElementById('previewFileLama').style.display = 'none';

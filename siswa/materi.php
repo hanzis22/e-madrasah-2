@@ -52,7 +52,8 @@
                                 <!-- Kalau ADA 2: Pakai Grid agar sejajar (col-6 col-6) -->
                                 <div class="row g-2">
                                     <div class="col-6">
-                                        <a href="../uploads/<?= $row['file_pdf'] ?>" target="_blank" class="btn btn-cari btn-sm w-100"><i class="bi bi-filetype-pdf me-2"></i>PDF</a>
+                                        <a href="../download.php?f=<?= rawurlencode($row['file_pdf']) ?>" target="_blank" class="btn btn-cari btn-sm w-100"><i class="bi bi-filetype-pdf me-2"></i>PDF</a>
+                                        <?php /* H-04 FIX */ ?>
                                     </div>
                                     <div class="col-6">
                                         <a href="<?= $row['link_youtube'] ?>" target="_blank" class="btn btn-red btn-sm w-100"><i class="bi bi-caret-right-square-fill me-2"></i>YouTube</a>
@@ -61,7 +62,8 @@
                             <?php else: ?>
                                 <!-- Kalau CUMA 1: Langsung full width (w-100) -->
                                 <?php if ($has_pdf): ?>
-                                    <a href="../uploads/<?= $row['file_pdf'] ?>" target="_blank" class="btn btn-cari btn-sm w-100"><i class="bi bi-filetype-pdf me-2"></i>Buka/Download PDF</a>
+                                    <a href="../download.php?f=<?= rawurlencode($row['file_pdf']) ?>" target="_blank" class="btn btn-cari btn-sm w-100"><i class="bi bi-filetype-pdf me-2"></i>Buka/Download PDF</a>
+                                    <?php /* H-04 FIX */ ?>
                                 <?php endif; ?>
                                 
                                 <?php if ($has_yt): ?>

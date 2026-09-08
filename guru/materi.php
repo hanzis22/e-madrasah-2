@@ -87,7 +87,8 @@
                                                         <td><?= htmlspecialchars($row['nama_mapel'], ENT_QUOTES) ?> - <?= htmlspecialchars($row['nama_kelas'], ENT_QUOTES) ?></td>
                             <td>
                                 <?php if(!empty($row['file_pdf'])): ?>
-                                    <a href="../uploads/<?= $row['file_pdf'] ?>" target="_blank" class="btn btn-blue btn-sm"><i class="bi bi-file-pdf me-2"></i>Lihat PDF</a>
+                                    <a href="../download.php?f=<?= rawurlencode($row['file_pdf']) ?>" target="_blank" class="btn btn-blue btn-sm"><i class="bi bi-file-pdf me-2"></i>Lihat PDF</a>
+                                <?php /* H-04 FIX */ ?>
                                 <?php endif; ?>
                                 <?php if(!empty($row['link_youtube'])): ?>
                                     <a href="<?= $row['link_youtube'] ?>" target="_blank" class="btn btn-red btn-sm" style="margin-left:5px;"><i class="bi bi-youtube me-2"></i>Youtube</a>

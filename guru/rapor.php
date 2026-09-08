@@ -80,7 +80,8 @@
                                                         <td><?= htmlspecialchars($row['nama_kelas'], ENT_QUOTES) ?></td> <!-- ISI KOLOM KELAS -->
                             <td><?= $row['semester'] ?></td>
                             <td>
-                                <a href="../uploads/<?= $row['file_pdf'] ?>" target="_blank" class="btn btn-blue btn-sm"><i class="bi bi-file-pdf me-2"></i>Lihat PDF</a>
+                                <a href="../download.php?f=<?= rawurlencode($row['file_pdf']) ?>" target="_blank" class="btn btn-blue btn-sm"><i class="bi bi-file-pdf me-2"></i>Lihat PDF</a>
+                                <?php /* H-04 FIX */ ?>
                             </td>
                             <td style="text-align:center;">
                                 <a href="?hapus=<?= $row['id'] ?>" onclick="return confirm('Hapus rapor ini?')" class="btn btn-red btn-sm" style="color:red; text-decoration:none;"><i class="bi bi-trash"></i></a>

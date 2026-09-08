@@ -76,8 +76,8 @@ if (isset($_POST['simpan_profil'])) {
 
 // Tentukan path foto
  $folder_foto = '../uploads/profil/';
-if (!empty($siswa['foto']) && file_exists($folder_foto . $siswa['foto'])) {
-    $src_foto = $folder_foto . $siswa['foto'];
+ if (!empty($siswa['foto']) && file_exists($folder_foto . $siswa['foto'])) {
+     $src_foto = '../download.php?f=profil/' . rawurlencode($siswa['foto']); // H-04 FIX
 } else {
     $src_foto = '../assets/img/default.png';
 }

@@ -62,7 +62,8 @@ if (!empty($ids_anak)) {
                                                         <td><?= htmlspecialchars($row['semester'], ENT_QUOTES) ?></td>
                             <td><?= $tgl_upload ?></td>
                             <td style="text-align:center;">
-                                <a href="../uploads/<?= $row['file_pdf'] ?>" target="_blank" class="btn btn-cari btn-sm"><i class="bi bi-download me-2"></i>Download</a>
+                                <a href="../download.php?f=<?= rawurlencode($row['file_pdf']) ?>" target="_blank" class="btn btn-cari btn-sm"><i class="bi bi-download me-2"></i>Download</a>
+                                <?php /* H-04 FIX: route via download.php (auth + no direct file access) */ ?>
                             </td>
                         </tr>
                         <?php 

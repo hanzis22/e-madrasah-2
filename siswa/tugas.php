@@ -139,7 +139,7 @@ if (isset($_POST['kumpulan'])) {
 
                             // 2. LOGIKA FILE
                             if (!empty($row['file_saya'])) {
-                                $file_text = "<a href='../uploads/tugas/".$row['file_saya']."' target='_blank' class='btn btn-blue btn-sm' style='font-size:11px; padding: 3px 8px;'><i class='bi bi-eye'></i></a>";
+                                $file_text = "<a href='../download.php?f=tugas/".rawurlencode($row['file_saya'])."' target='_blank' class='btn btn-blue btn-sm' style='font-size:11px; padding: 3px 8px;'><i class='bi bi-eye'></i></a>";
                             } else {
                                 $file_text = "-";
                             }

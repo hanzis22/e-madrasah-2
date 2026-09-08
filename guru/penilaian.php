@@ -78,7 +78,7 @@
                         // 2. Logika File (Dipisah)
                         $file_text = "-";
                         if ($data_kumpul && !empty($data_kumpul['file_jawaban'])) {
-                            $file_text = "<a href='../uploads/tugas/".$data_kumpul['file_jawaban']."' target='_blank' class='btn btn-blue btn-sm' style='font-size:11px; padding: 3px 8px;'><i class='bi bi-eye'></i></a>";
+                            $file_text = "<a href='../download.php?f=tugas/".rawurlencode($data_kumpul['file_jawaban'])."' target='_blank' class='btn btn-blue btn-sm' style='font-size:11px; padding: 3px 8px;'><i class='bi bi-eye'></i></a>";
                         }
                         ?>
                         <tr>

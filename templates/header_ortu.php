@@ -251,11 +251,13 @@ require_once '../config/db.php';
         </div>
         <div style="display: flex; align-items: center; font-size: 14px;">
             <?php 
-            $path_foto_header = '../uploads/profil/' . ($_SESSION['foto'] ?? '');
-            if (empty($_SESSION['foto']) || !file_exists($path_foto_header)) {
-                $path_foto_header = '../assets/img/default.png';
-            }
-            ?>
+                        $foto_fisik = '../uploads/profil/' . ($_SESSION['foto'] ?? '');
+                        if (empty($_SESSION['foto']) || !file_exists($foto_fisik)) {
+                            $path_foto_header = '../assets/img/default.png';
+                        } else {
+                            $path_foto_header = '../download.php?f=profil/' . rawurlencode($_SESSION['foto']); // H-04 FIX
+                        }
+                        ?>
             <img src="<?= $path_foto_header ?>" alt="Foto Profil" 
                 style="width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.7); margin-right: 10px;">
             Hallo, <b><?= $_SESSION['nama'] ?></b> <small class="ms-2 opacity-75">(Orang Tua)</small>
