@@ -2,6 +2,7 @@
 require_once '../functions/functions.php';
 cek_login();
 cek_role('admin');
+kirim_keamanan_headers();
 
 /** @var mysqli $conn */
 require_once '../config/db.php';

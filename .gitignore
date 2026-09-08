@@ -6,16 +6,23 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+*.swo
 
 # Logs & temp
 *.log
 tmp/
 temp/
+/tmp*
 
 # Composer (kalau dipakai)
 /vendor/
 composer.lock
 
-# Environment
+# Dependencies
+node_modules/
+
+# Environment & secrets — JANGAN commit ke repo.
+# Catatan: `.env.example` sengaja TIDAK di-ignore (buffer secret), biar bisa di-commit.
 .env
 *.env.local
+.env.*.local

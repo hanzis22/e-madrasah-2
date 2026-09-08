@@ -1,4 +1,5 @@
 <?php 
+require_once '../functions/functions.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -11,6 +12,7 @@ if($_SESSION['role'] != 'ortu') {
     header("Location: ../auth/login.php?msg=denied");
     exit();
 }
+kirim_keamanan_headers();
 require_once '../config/db.php';
 
 ?>

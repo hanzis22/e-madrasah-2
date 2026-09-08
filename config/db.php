@@ -1,10 +1,12 @@
 <?php
+// L-01: DB credentials from environment variables, not hardcoded.
+// Falls back to root/root ONLY for local dev convenience — never ship this to prod.
 date_default_timezone_set('Asia/Jakarta');
 
- $host = "localhost";
- $user = "root";
- $pass = "root"; 
- $db   = "e_madrasah";
+ $host = getenv('DB_HOST') ?: 'localhost';
+ $user = getenv('DB_USER') ?: 'root';
+ $pass = getenv('DB_PASS') ?: 'root';
+ $db   = getenv('DB_NAME') ?: 'e_madrasah';
 
  $conn = mysqli_connect($host, $user, $pass, $db);
 

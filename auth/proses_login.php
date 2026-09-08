@@ -1,10 +1,14 @@
 <?php
 session_start();
 require '../config/db.php';
+require '../functions/functions.php';
 
 /** @var mysqli $conn */
 
 if (isset($_POST['login'])) {
+    // M-03: rate limit per IP sebelum memproses login
+    $lockfile = cek_rate_limit(10, 15);
+
     // 1. Ambil input dan amankan dari SQL Injection
     $user = mysqli_real_escape_string($conn, $_POST['username']);
     $pass = $_POST['password']; // JANGAN di-md5 atau di-hash di sini
@@ -15,6 +19,8 @@ if (isset($_POST['login'])) {
 
     // 3. Cek apakah user ditemukan DAN password_verify cocok
     if ($data && password_verify($pass, $data['password'])) {
+        // reset counter percobaan gagal setelah sukses
+        if (isset($lockfile) && file_exists($lockfile)) { @unlink($lockfile); }
         
         // Simpan data ke session
         $_SESSION['login'] = true;
@@ -44,10 +50,11 @@ if (isset($_POST['login'])) {
         exit(); 
         
     } else {
-        // Jika username salah ATAU password salah
-        header("Location: login.php?msg=gagal");
-        exit();
-    }
+            // Jika username salah ATAU password salah
+            catat_percobaan_login($lockfile);  // M-03: catat percobaan gagal
+            header("Location: login.php?msg=gagal");
+            exit();
+        }
 } else {
     header("Location: login.php");
     exit();

@@ -56,9 +56,12 @@ if (isset($_POST['simpan_profil'])) {
             if (empty($pass_baru)) {
                 mysqli_query($conn, "UPDATE users SET nama='$nama_baru', username='$username_baru', foto='$nama_foto' WHERE id='$id_ortu'");
             } else {
-                $pass_md5 = md5($pass_baru);
-                mysqli_query($conn, "UPDATE users SET nama='$nama_baru', username='$username_baru', password='$pass_md5', foto='$nama_foto' WHERE id='$id_ortu'");
-            }
+                            // FIX M-04: use password_hash (bcrypt) consistently, not md5.
+                            // md5() caused broken auth — login uses password_verify() which
+                            // cannot match an md5 hash.
+                            $pass_hash = password_hash($pass_baru, PASSWORD_DEFAULT);
+                            mysqli_query($conn, "UPDATE users SET nama='$nama_baru', username='$username_baru', password='$pass_hash', foto='$nama_foto' WHERE id='$id_ortu'");
+                        }
 
             // Update session
             $_SESSION['nama'] = $nama_baru;
