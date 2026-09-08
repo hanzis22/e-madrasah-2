@@ -57,9 +57,9 @@ if (!empty($ids_anak)) {
                         ?>
                         <tr>
                             <td style="text-align:center;"><?= $no++ ?></td>
-                            <td><?= $row['nama_anak'] ?></td>
-                            <td><?= $row['nama_kelas'] ?: '-' ?></td>
-                            <td><?= $row['semester'] ?></td>
+                            <td><?= htmlspecialchars($row['nama_anak'], ENT_QUOTES) ?></td>
+                                                        <td><?= htmlspecialchars($row['nama_kelas'], ENT_QUOTES) ?: '-' ?></td>
+                                                        <td><?= htmlspecialchars($row['semester'], ENT_QUOTES) ?></td>
                             <td><?= $tgl_upload ?></td>
                             <td style="text-align:center;">
                                 <a href="../uploads/<?= $row['file_pdf'] ?>" target="_blank" class="btn btn-cari btn-sm"><i class="bi bi-download me-2"></i>Download</a>

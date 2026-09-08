@@ -43,9 +43,9 @@
                             <div style="font-size: 40px; margin-bottom: 15px;">
                                 <?= $ikon ?>
                             </div>
-                            <h6 style="margin-bottom: 10px; font-weight: bold;"><?= $row['judul_materi'] ?></h6>
-                            <small style="color:#777; display:block; margin-bottom: 5px;">Mapel: <?= $row['nama_mapel'] ?></small>
-                            <small style="color:#777; display:block; margin-bottom: 20px;">Guru: <?= $row['nama_guru'] ?></small>
+                            <h6 style="margin-bottom: 10px; font-weight: bold;"><?= htmlspecialchars($row['judul_materi'], ENT_QUOTES) ?></h6>
+                                                        <small style="color:#777; display:block; margin-bottom: 5px;">Mapel: <?= htmlspecialchars($row['nama_mapel'], ENT_QUOTES) ?></small>
+                                                        <small style="color:#777; display:block; margin-bottom: 20px;">Guru: <?= htmlspecialchars($row['nama_guru'], ENT_QUOTES) ?></small>
                             
                             <!-- LOGIKA TOMBOL: SEJAJAR ATAU FULL -->
                             <?php if ($has_pdf && $has_yt): ?>

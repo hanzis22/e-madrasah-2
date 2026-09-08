@@ -117,14 +117,14 @@
                         <tr>
                             <td style="text-align:center;"><?= $no++ ?></td>
                             <td>
-                                <b><?= $row['judul_tugas'] ?>
-                                <br><small class="text-muted"><?= substr($row['deskripsi'], 0, 80) ?>...</small>
+                                <b><?= htmlspecialchars($row['judul_tugas'], ENT_QUOTES) ?>
+                                <br><small class="text-muted"><?= htmlspecialchars(substr($row['deskripsi'], 0, 80), ENT_QUOTES) ?>...</small>
                                 </b><?= $link_lampiran ?>
                             </td>
-                            <td><?= $row['nama_mapel'] ?> - <?= $row['nama_kelas'] ?></td>
+                            <td><?= htmlspecialchars($row['nama_mapel'], ENT_QUOTES) ?> - <?= htmlspecialchars($row['nama_kelas'], ENT_QUOTES) ?></td>
                             <td><?= $deadline_tgl ?></td>
                             <td style="text-align:center;">
-                                <button onclick="editTugas(<?= $row['id'] ?>, '<?= $row['id_mapel'] ?>', '<?= $row['id_kelas'] ?>', '<?= $row['deadline'] ?>', '<?= addslashes($row['judul_tugas']) ?>', '<?= addslashes($row['deskripsi']) ?>', '<?= $row['file_tugas'] ?>')" class="btn btn-sage btn-sm"> <i class="bi bi-pencil-square"></i></button>
+                                <button onclick='editTugas(<?= (int)$row['id'] ?>, "<?= htmlspecialchars($row['id_mapel'], ENT_QUOTES) ?>", "<?= htmlspecialchars($row['id_kelas'], ENT_QUOTES) ?>", "<?= htmlspecialchars($row['deadline'], ENT_QUOTES) ?>", "<?= htmlspecialchars($row['judul_tugas'], ENT_QUOTES) ?>", "<?= htmlspecialchars($row['deskripsi'], ENT_QUOTES) ?>", "<?= htmlspecialchars($row['file_tugas'], ENT_QUOTES) ?>")' class="btn btn-sage btn-sm"> <i class="bi bi-pencil-square"></i></button>
                                 <a href="?hapus=<?= $row['id'] ?>" onclick="return confirm('Hapus tugas ini?')" class="btn btn-red btn-sm"><i class="bi bi-trash"></i></a>
                             </td>
                         </tr>
@@ -208,8 +208,8 @@ if (isset($_POST['bagikan'])) {
 
 // LOGIKA HAPUS TUGAS
 if (isset($_GET['hapus'])) {
-    $id_hapus = $_GET['hapus'];
-    
+    $id_hapus = (int)$_GET['hapus'];  // FIX H-01: cast to int — blocks SQLi on the id
+
     // 1. Ambil nama file tugas dulu (untuk dihapus dari folder)
     $data_hapus = mysqli_query($conn, "SELECT file_tugas FROM tugas WHERE id='$id_hapus'");
     $row_hapus = mysqli_fetch_assoc($data_hapus);

@@ -106,12 +106,12 @@ if (!empty($ids_anak)) {
 
 
                     <td>
-                        <?= $row['judul_tugas'] ?>
-                        <br>
-                        <small class="text-muted">
-                            (<?= $row['nama_mapel'] ?>)
-                        </small>
-                    </td>
+                                            <?= htmlspecialchars($row['judul_tugas'], ENT_QUOTES) ?>
+                                            <br>
+                                            <small class="text-muted">
+                                                (<?= htmlspecialchars($row['nama_mapel'], ENT_QUOTES) ?>)
+                                            </small>
+                                        </td>
 
 
                     <td>

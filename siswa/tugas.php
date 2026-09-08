@@ -157,7 +157,7 @@ if (isset($_POST['kumpulan'])) {
                             ?>
                             <tr>
                                 <td style="text-align:center;"><?= $no++ ?></td>
-                                <td><?= $row['judul_tugas'] ?><br><small style="color:#888;"><?= $row['nama_mapel'] ?></small></td>
+                                <td><?= htmlspecialchars($row['judul_tugas'], ENT_QUOTES) ?><br><small style="color:#888;"><?= htmlspecialchars($row['nama_mapel'], ENT_QUOTES) ?></small></td>
                                 <td><?= $tgl_deadline ?></td>
                                 <td style="text-align:left;"><?= $status ?></td>
                                 <td style="text-align:center;"><?= $nilai ?></td>

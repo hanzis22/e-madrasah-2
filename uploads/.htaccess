@@ -1,0 +1,26 @@
+# H-04 mitigation: harden the uploads directory.
+# - No directory listing (reveals filenames an attacker could fetch directly).
+# - Refuse to execute any PHP/script inside uploads (prevents uploaded-file RCE).
+# - Block access to sensitive files (.htaccess, .ini, known exec handlers).
+
+# 1) Disable directory browsing
+Options -Indexes
+
+# 2) Forbid script execution inside uploads (Apache 2.4)
+<FilesMatch "\.(php|php3|php4|php5|php7|phtml|pht|phar|pl|py|cgi|sh|asp|aspx|jsp)$">
+    Require all denied
+</FilesMatch>
+
+# 3) Apache 2.2 fallback (broad host support)
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+
+# 4) Block access to hidden & config files
+<FilesMatch "^(\.htaccess|\.htpasswd|\.env|web\.config|README.*)$">
+    Require all denied
+</FilesMatch>
+
+# 5) Defense in depth: refuse to serve as CGI
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .phps .cgi .pl .p1
+RemoveType .php .phtml .php3 .php4 .php5 .php7 .phps .cgi .pl

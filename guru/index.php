@@ -110,8 +110,8 @@ $id_guru_login = $_SESSION['id'];
                         if (mysqli_num_rows($data_mengajar) > 0) {
                             while ($row = mysqli_fetch_assoc($data_mengajar)) { ?>
                                 <tr>
-                                    <td><?= $row['nama_mapel'] ?></td>
-                                    <td><?= $row['nama_kelas'] ?></td>
+                                    <td><?= htmlspecialchars($row['nama_mapel'], ENT_QUOTES) ?></td>
+                                                                        <td><?= htmlspecialchars($row['nama_kelas'], ENT_QUOTES) ?></td>
                                 </tr>
                             <?php } 
                         } else { ?>

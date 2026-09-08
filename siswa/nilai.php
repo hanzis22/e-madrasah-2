@@ -50,8 +50,8 @@
                         ?>
                         <tr>
                             <td style="text-align:center;"><?= $no++ ?></td>
-                            <td><?= $row['judul_tugas'] ?></td>
-                            <td><?= $row['nama_mapel'] ?></td>
+                            <td><?= htmlspecialchars($row['judul_tugas'], ENT_QUOTES) ?></td>
+                                                        <td><?= htmlspecialchars($row['nama_mapel'], ENT_QUOTES) ?></td>
                             <td style="text-align:left;"><?= $status_text ?></td>
                             <td style="text-align:center;"><strong style="font-size: 16px;"><?= $row['nilai'] ?></strong></td>
                         </tr>

@@ -83,8 +83,8 @@
                     while ($row = mysqli_fetch_assoc($data_materi)) { ?>
                         <tr>
                             <td style="text-align:center;"><?= $no++ ?></td>
-                            <td><?= $row['judul_materi'] ?></td>
-                            <td><?= $row['nama_mapel'] ?> - <?= $row['nama_kelas'] ?></td>
+                            <td><?= htmlspecialchars($row['judul_materi'], ENT_QUOTES) ?></td>
+                                                        <td><?= htmlspecialchars($row['nama_mapel'], ENT_QUOTES) ?> - <?= htmlspecialchars($row['nama_kelas'], ENT_QUOTES) ?></td>
                             <td>
                                 <?php if(!empty($row['file_pdf'])): ?>
                                     <a href="../uploads/<?= $row['file_pdf'] ?>" target="_blank" class="btn btn-blue btn-sm"><i class="bi bi-file-pdf me-2"></i>Lihat PDF</a>
@@ -95,7 +95,7 @@
                             </td>
                             <!-- KOLOM AKSI DIPERLEBAR, DITAMBAH TOMBOL EDIT -->
                             <td style="text-align:center;">
-                                <button onclick="editMateri(<?= $row['id'] ?>, '<?= $row['id_mapel'] ?>', '<?= $row['id_kelas'] ?>', '<?= addslashes($row['judul_materi']) ?>', '<?= addslashes($row['link_youtube']) ?>')" class="btn btn-sage btn-sm"><i class="bi bi-pencil-square"></i></button>
+                                <button onclick='editMateri(<?= (int)$row['id'] ?>, "<?= htmlspecialchars($row['id_mapel'], ENT_QUOTES) ?>", "<?= htmlspecialchars($row['id_kelas'], ENT_QUOTES) ?>", "<?= htmlspecialchars($row['judul_materi'], ENT_QUOTES) ?>", "<?= htmlspecialchars($row['link_youtube'], ENT_QUOTES) ?>")' class="btn btn-sage btn-sm"><i class="bi bi-pencil-square"></i></button>
                                 <a href="?hapus=<?= $row['id'] ?>" onclick="return confirm('Hapus materi ini?')" class="btn btn-red btn-sm" style="color:red; text-decoration:none; margin-left:5px;"><i class="bi bi-trash"></i></a>
                             </td>
                         </tr>
@@ -180,7 +180,7 @@ if (isset($_POST['simpan_materi'])) {
 
 // LOGIKA HAPUS
 if (isset($_GET['hapus'])) {
-    $id_hapus = $_GET['hapus'];
+    $id_hapus = (int)$_GET['hapus'];  // FIX H-01: cast to int — blocks SQLi on the id
     $data = mysqli_query($conn, "SELECT * FROM materi WHERE id='$id_hapus'");
     $d = mysqli_fetch_assoc($data);
     if ($d['file_pdf']) {

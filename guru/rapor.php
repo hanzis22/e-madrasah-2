@@ -76,8 +76,8 @@
                     while ($row = mysqli_fetch_assoc($data_rapor)) { ?>
                         <tr>
                             <td style="text-align:center;"><?= $no++ ?></td>
-                            <td><?= $row['nama'] ?></td>
-                            <td><?= $row['nama_kelas'] ?></td> <!-- ISI KOLOM KELAS -->
+                            <td><?= htmlspecialchars($row['nama'], ENT_QUOTES) ?></td>
+                                                        <td><?= htmlspecialchars($row['nama_kelas'], ENT_QUOTES) ?></td> <!-- ISI KOLOM KELAS -->
                             <td><?= $row['semester'] ?></td>
                             <td>
                                 <a href="../uploads/<?= $row['file_pdf'] ?>" target="_blank" class="btn btn-blue btn-sm"><i class="bi bi-file-pdf me-2"></i>Lihat PDF</a>
@@ -140,7 +140,7 @@ if (isset($_POST['upload'])) {
 
 // LOGIKA HAPUS
 if (isset($_GET['hapus'])) {
-    $id_hapus = $_GET['hapus'];
+    $id_hapus = (int)$_GET['hapus'];  // FIX H-01: cast to int — blocks SQLi on the id
     $data = mysqli_query($conn, "SELECT * FROM rapor WHERE id='$id_hapus'");
     $d = mysqli_fetch_assoc($data);
     if ($d['file_pdf']) {

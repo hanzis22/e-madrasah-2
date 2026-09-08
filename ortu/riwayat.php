@@ -84,9 +84,9 @@ if (!empty($ids_anak)) {
                         ?>
                         <tr>
                             <td style="text-align:center;"><?= $no++ ?></td>
-                            <td><?= $row['nama_anak'] ?></td>
-                            <td><?= $row['jenis_bayar'] ?></td>
-                            <td><?= $row['bulan'] ?> <?= $row['tahun_ajaran'] ?></td>
+                            <td><?= htmlspecialchars($row['nama_anak'], ENT_QUOTES) ?></td>
+                                                        <td><?= htmlspecialchars($row['jenis_bayar'], ENT_QUOTES) ?></td>
+                                                        <td><?= htmlspecialchars($row['bulan'], ENT_QUOTES) ?> <?= htmlspecialchars($row['tahun_ajaran'], ENT_QUOTES) ?></td>
                             <td>Rp. <?= number_format($row['jumlah'], 0, ',', '.') ?></td>
                             <td><?= $tanggal ?></td>
                             <td style="text-align:left;">
